@@ -1,10 +1,16 @@
-const Character = require('./Character')
+const Character= require('./Character') 
 
-class Thief extends Character {
-    attack(target) {
-        const damage = Math.max(0, 2 * (this.attackPts - target.defensePts))
-        target.lifepoints -= damage
+class Thief extends Character{
+    constructor(name, lifepoints, attackPts, defensePts) {
+        super(name, lifepoints, attackPts, defensePts);
     }
-}
-
-module.exports = Thief
+    attack(target) {
+        const damage = 2 * (this.attackPts - target.defensePts);
+        if (damage > 0) {
+            target.lifepoints -= damage;
+        }
+        console.log(`${this.name} atacou ${target.name} e causou ${damage} pontos de dano!`);
+        console.log(`${target.name} agora tem ${target.lifepoints} pontos de vida restantes.`);
+        }
+    }
+module.exports= Thief
